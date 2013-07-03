@@ -3,7 +3,21 @@ require __DIR__ . '/vendor/autoload.php';
 ini_set('display_errors', true);
 error_reporting(E_ALL | E_STRICT);
 
-$config = include __DIR__ . '/config/config.php';
+function getConfig()
+{
+    if(file_exists('changelog_generator_config.php')) {
+        return include 'changelog_generator_config.php';
+    }
+    if(file_exists(__DIR__ . '/config/changelog_generator_config.php')) {
+        return include __DIR__ . '/config/changelog_generator_config.php';
+    }
+    if(file_exists(__DIR__ . '/config/changelog_generator_config.php.dist')) {
+        return include __DIR__ . '/config/changelog_generator_config.php.dist';
+    }
+    throw new Exception('Create a config file as described in the readme!');
+}
+
+$config = getConfig();
 if (false === $config) {
     echo "Failed to load config; please create a config/config.php file based on config/config.php.dist.";
     exit(1);

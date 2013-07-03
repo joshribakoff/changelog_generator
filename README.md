@@ -17,7 +17,7 @@ php /path/to/composer.phar install
 Usage
 -----
 
-Copy `config/config.php.dist` to `config/config.php` and edit the new file to
+Copy `config/changelog_generator_config.php.dist` to `config/changelog_generator_config.php` and edit the new file to
 add your GitHub API token, the user or organization, the repository, and the
 milestone identifier for which you want to generate a changelog.
 
